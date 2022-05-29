@@ -14,6 +14,9 @@ def scrape_all():
 
     # Setting our news title and paragraph variables
     news_title, news_paragraph = mars_news(browser)
+
+    # Setting our hemispheres dictionary
+    hemisphere_image_urls = hemis(browser)
     
     # Run all scraping functions and store results in dictionary
     data = {
@@ -21,7 +24,8 @@ def scrape_all():
           "news_paragraph": news_paragraph,
           "featured_image": featured_image(browser),
           "facts": mars_facts(),
-          "last_modified": dt.datetime.now()
+          "last_modified": dt.datetime.now(),
+          "hemispheres": hemisphere_image_urls
     }
 
     # Stop webdriver and return data
@@ -155,6 +159,59 @@ def mars_facts():
 
     # Converting the DataFrame we created into HTML format, add bootstrap
     return df.to_html(classes="table table-striped")
+
+def hemis(browser):
+    # Use browser to visit the URL 
+    url = 'https://marshemispheres.com/'
+    browser.visit(url)
+
+    # Create a list to hold the images and titles.
+    hemisphere_image_urls = []
+
+    # Write code to retrieve the image urls and titles for each hemisphere.
+    ## Create an HTML object, assigned to the html variable:
+    html = browser.html
+    ## Use BeautifulSoup (as soup) to parse the html object:
+    hemi_soup = soup(html, 'html.parser')
+
+    try: 
+        # Create a list with all relevant elements (4 elements for 4 hemispheres) in it:
+        divs = hemi_soup.find_all('div', class_='description')
+        for div in divs:
+            a = div.find_all('a', class_='itemLink product-item')
+            # From each specific element, get the href (to go to a specific hemisphere's own page):
+            for ana in a:
+                href = ana.get('href')
+                
+                # Create dictionary:
+                hemispheres = {}
+                
+                # From the specific href, string together a complete URL (to be able to visit the specific hemisphere's own page):
+                next_pg_url = url + href
+                browser.visit(next_pg_url)
+
+                # Parse the new (a specific hemisphere's) page:    
+                html = browser.html
+                # Use BeautifulSoup (as soup) to parse the html object:
+                sphere_soup = soup(html, 'html.parser')
+
+                # Get the title for that hemisphere:
+                title = sphere_soup.find('h2', class_='title').get_text()
+
+                # Get the (complete) image URL for that hemisphere (and visit the full image thereby):
+                img_rel_url = sphere_soup.find('img', class_='wide-image').get('src')
+                img_url = url + img_rel_url
+                browser.visit(img_url)
+
+                # Add the image URL and title to the dictioanry:
+                hemispheres['img_url'] = img_url
+                hemispheres['title'] = title
+                hemisphere_image_urls.append(hemispheres)
+
+    except AttributeError:
+        return None
+
+    return hemisphere_image_urls
 
 
 
