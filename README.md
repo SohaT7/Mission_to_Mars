@@ -7,7 +7,7 @@ The purpose of theis project is to create a web app that shows data related to t
 The data is scraped live from the websites, i.e. the most recent data is scraped everytime. It is then stored in a NoSQL database, wherefrom it is rendered into a web application that is created with the help of Flask. 
 
 ### About the Dataset:
-The data is scraped from two websites.
+The data is scraped from three websites.
 
 NASA Mars News from:
 https://redplanetscience.com
