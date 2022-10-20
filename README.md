@@ -16,11 +16,11 @@
 This project aims to create a web app that showcases the most recently published data on Mars and the Mars mission.
 
 ### About the Dataset:
-The data is scraped from three websites:
- - NASA Mars News from: https://redplanetscience.com
- - Jet Propulsion Laboratory's Space Images from: https://spaceimages-mars.com
- - Mars facts from: https://galaxyfacts-mars.com
- - Hemispheres from https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars 
+The data is scraped from the following websites:
+ - NASA Mars News from https://redplanetscience.com
+ - Jet Propulsion Laboratory's Space Images (featured image) from https://spaceimages-mars.com
+ - Mars facts from https://galaxyfacts-mars.com
+ - Mars hemispheres from https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars 
 
 ### Tools Used:
  - Python (html5lib and lxml libraries)
