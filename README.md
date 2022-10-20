@@ -31,7 +31,7 @@ The data is scraped from the following websites:
  - Web-Driver Manager
 
 ### Description:
-Using BeautifulSoup and Splinter, the data is scraped 'live' from the websites, i.e. the most recent data is scraped everytime. The data scraped from the websites comprises the following: news title, Mars facts, and images and titles of the four Mars hemispheres. The scraped data is stored in a Mongo database, which is a NoSQL database. Using Flask-Pymongo, the web app is connected to the Mongo database and the data displayed therein. 
+Using BeautifulSoup and Splinter, the data is scraped 'live' from the websites, i.e. the most recent data is scraped everytime. The data scraped from the websites comprises the following: news title, Mars facts, and images and titles of the four Mars hemispheres. The scraped data is stored in a Mongo database, which is a NoSQL database. Using Flask-Pymongo, the web app is connected to the Mongo database and the data displayed in the web app. 
 
 ## Results
 A 'Scrape New Data' button is added to the top most part of the page. When clicked, this button retrieves and displays the most recent data. BeautifulSoup and Splinter are used to retrieve the data from the websites. The latest Mars news and its summary is displayed near the top of the page. Right under it, the featured Mars image is displayed to the left and the table for Mars facts to the right of the page. The lower half of the page displays the full-resolution images for the four Mars hemispheres - Cerberus Hemisphere, Schiaparelli Hemisphere, Syrtis Major Hemisphere, and the Valles Marineris Hemisphere.
